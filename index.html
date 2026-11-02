@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe6ef">
+<title>Tero Lagi Message Cha 😂</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100svh;
+  overflow: hidden;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  background: linear-gradient(135deg, #ffe2ec, #fff2f6, #fce0eb);
+  color: #49343e;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* BALLOONS */
+
+#balloons, #emojiRain {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  animation: balloonFloat linear infinite;
+  filter: drop-shadow(0 5px 5px #00000012);
+}
+
+@keyframes balloonFloat {
+  0% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-55vh) rotate(8deg);
+  }
+  100% {
+    transform: translateY(-120vh) rotate(-8deg);
+  }
+}
+
+/* GENERAL SCREENS */
+
+.screen {
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  position: relative;
+}
+
+.card {
+  width: 100%;
+  max-width: 390px;
+  background: rgba(255,255,255,.94);
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 30px 23px;
+  text-align: center;
+  box-shadow: 0 15px 50px #b85d791c;
+  position: relative;
+  z-index: 2;
+  animation: cardEnter .65s ease both;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+h1 {
+  font-size: 27px;
+  line-height: 1.4;
+  margin: 15px 0;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #927d87;
+}
+
+.tag {
+  color: #d17d91;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.main-emoji {
+  font-size: 75px;
+  margin: 20px 0;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.primary {
+  width: 100%;
+  border: none;
+  padding: 16px;
+  margin-top: 24px;
+  background: #e982a1;
+  color: white;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 7px 18px #e982a144;
+}
+
+.primary:active, .option:active {
+  transform: scale(.97);
+}
+
+/* SCREEN 1 */
+
+.notification {
+  background: #fff3f7;
+  border: 1px solid #f5dce5;
+  border-radius: 16px;
+  padding: 16px;
+  margin: 25px 0;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+}
+
+.avatar {
+  height: 48px;
+  width: 48px;
+  flex-shrink: 0;
+  background: #f8d3e0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+}
+
+.notif-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.notif-sub {
+  color: #a18a95;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* SCREEN 2: EMOJI EXPLOSION */
+
+#screen2 {
+  background: #fff0f5;
+  z-index: 10;
+  flex-direction: column;
+  text-align: center;
+}
+
+#countdown {
+  font-size: clamp(75px, 23vw, 120px);
+  font-weight: 900;
+  color: #e76e98;
+  text-shadow: 0 8px 25px #e76e9844;
+  animation: pulse .8s infinite;
+  z-index: 12;
+}
+
+.countdown-text {
+  color: #a76d84;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-top: 10px;
+  z-index: 12;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.16); }
+}
+
+/* EMOJI RAIN */
+
+.rain-emoji {
+  position: absolute;
+  top: -80px;
+  animation: emojiFall linear forwards;
+  will-change: transform;
+}
+
+@keyframes emojiFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  100% {
+    transform: translateY(115vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* SCREEN 3: FULL SCREEN INSULT */
+
+#screen3 {
+  background: #ff315f;
+  color: white;
+  text-align: center;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 15;
+}
+
+#insult {
+  font-size: clamp(35px, 10vw, 65px);
+  font-weight: 1000;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-shadow: 4px 5px 0 #a91442;
+  animation: insultPop .7s cubic-bezier(.2,1.5,.5,1) both;
+  max-width: 650px;
+  z-index: 20;
+}
+
+#insult span {
+  display: block;
+  font-size: .65em;
+  margin-top: 20px;
+}
+
+@keyframes insultPop {
+  from {
+    transform: scale(.2) rotate(-8deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+/* SCREEN 4: REPLY CARD */
+
+.option {
+  width: 100%;
+  padding: 15px 12px;
+  margin-top: 11px;
+  border-radius: 14px;
+  border: 1px solid #f3dce5;
+  background: #fff5f8;
+  color: #765364;
+  font-size: 14px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.option.selected {
+  background: #f8d2df;
+  border: 2px solid #df7899;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 14px;
+  border: 1px solid #efd6df;
+  border-radius: 13px;
+  margin-top: 15px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+  outline-color: #e982a1;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.footer {
+  font-size: 11px;
+  color: #b9a3ad;
+  margin-top: 22px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="balloons"></div>
+<div id="emojiRain"></div>
+
+<!-- SCREEN 1: NOTIFICATION -->
+
+<section class="screen" id="screen1">
+
+  <div class="card">
+
+    <div class="tag">NEW MESSAGE ALERT 💌</div>
+
+    <div class="main-emoji">📩</div>
+
+    <h1>Oii! Sun na! 👀</h1>
+
+    <p>Tero lagi kasaile message pathako cha. 😂</p>
+
+    <div class="notification">
+
+      <div class="avatar">👦🏻</div>
+
+      <div>
+        <div class="notif-title">
+          You got a message from him 👀
+        </div>
+
+        <div class="notif-sub">
+          Just now · 1 new message
+        </div>
+      </div>
+
+    </div>
+
+    <p>Herna man cha ki chaina? 😏</p>
+
+    <button class="primary" onclick="startSurprise()">
+      Message her ta 💌
+    </button>
+
+    <div class="footer">
+      Ignore nagar hai feri 😂
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SCREEN 2: 10 SECOND COUNTDOWN + EMOJI RAIN -->
+
+<section class="screen hidden" id="screen2">
+
+  <div id="countdown">10</div>
+
+  <div class="countdown-text">
+    WAIT FOR IT... 😈
+  </div>
+
+</section>
+
+
+<!-- SCREEN 3: FULL SCREEN MESSAGE, NO CARD -->
+
+<section class="screen hidden" id="screen3">
+
+  <div id="insult">
+    FUCK YOU FOR IGNORING MY MESSAGES 🖕
+    <span>MESSAGE PADHNA TA AUNCHA NI? 💀</span>
+  </div>
+
+</section>
+
+
+<!-- SCREEN 4: TERO PALO -->
+
+<section class="screen hidden" id="screen4">
+
+  <div class="card">
+
+    <div class="tag">MESSAGE DELIVERED SUCCESSFULLY 😂</div>
+
+    <div class="main-emoji">💀</div>
+
+    <h1>ABA TERO PALO! 😭</h1>
+
+    <p>
+      La bhan aba, k reply dinches? 👀
+    </p>
+
+    <div id="options">
+
+      <button class="option" onclick="selectOption(this,'reply')">
+        😂 Reply dinchu ni!
+      </button>
+
+      <button class="option" onclick="selectOption(this,'ditch')">
+        💀 Ja bhai, ditch gare!
+      </button>
+
+      <button class="option" onclick="selectOption(this,'no')">
+        🙄 Ma boldina ta sanga!
+      </button>
+
+      <button class="option" onclick="selectOption(this,'yes')">
+        ❤️ Aba dekhi bolchu ni!
+      </button>
+
+      <button class="option" onclick="selectOption(this,'custom')">
+        ✍️ Aru nai kei bhannu cha!
+      </button>
+
+    </div>
+
+    <div id="customArea" class="hidden">
+      <textarea id="customMessage"
+        placeholder="La lekh, k bhannu cha? 😂"></textarea>
+    </div>
+
+    <button class="primary" onclick="sendReply()">
+      Send gar ta 😂
+    </button>
+
+    <div class="footer">
+      Yo pali chai reply chaiyo hai 😭
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SCREEN 5: WHATSAPP -->
+
+<section class="screen hidden" id="screen5">
+
+  <div class="card">
+
+    <div class="main-emoji">💚</div>
+
+    <h1>La aba WhatsApp ma ja! 😂</h1>
+
+    <p>
+      Tero reply ready cha. WhatsApp kholera
+      Send button thichna chai nabirses hai!
+    </p>
+
+    <button class="whatsapp" id="openWhatsApp">
+      Open WhatsApp 💬
+    </button>
+
+    <div class="footer">
+      Mission accomplished. 😎
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+
+const phone = "9779709270186";
+
+let selected = null;
+let rainInterval = null;
+let countdownInterval = null;
+let timers = [];
+
+function later(callback, delay) {
+  const id = setTimeout(callback, delay);
+  timers.push(id);
+  return id;
+}
+
+function clearAnimations() {
+  timers.forEach(clearTimeout);
+  timers = [];
+
+  clearInterval(rainInterval);
+  clearInterval(countdownInterval);
+
+  document.getElementById('emojiRain').innerHTML = '';
+}
+
+function showScreen(number) {
+
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.add('hidden');
+  });
+
+  document.getElementById('screen' + number)
+    .classList.remove('hidden');
+
+}
+
+// BALLOONS ON FIRST SCREEN
+
+function createBalloons() {
+
+  const container = document.getElementById('balloons');
+
+  const colors = ['🎈', '🎈', '🎈', '💗', '💕', '🎀'];
+
+  for (let i = 0; i < 24; i++) {
+
+    const balloon = document.createElement('span');
+
+    balloon.className = 'balloon';
+
+    balloon.textContent =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    balloon.style.left = Math.random() * 100 + 'vw';
+    balloon.style.fontSize = (25 + Math.random() * 28) + 'px';
+    balloon.style.animationDuration = (7 + Math.random() * 8) + 's';
+    balloon.style.animationDelay = (-Math.random() * 12) + 's';
+
+    container.appendChild(balloon);
+
+  }
+
+}
+
+// START THE SURPRISE
+
+function startSurprise() {
+
+  document.getElementById('balloons').innerHTML = '';
+
+  showScreen(2);
+
+  let count = 10;
+
+  document.getElementById('countdown').textContent = count;
+
+  // Continuous emoji rain
+
+  const emojis = [
+    '❤️','💕','💗','💖','💘','💝',
+    '😂','😭','💀','🖕','🤣','🥲',
+    '🎈','🎉','😈','🙄','🤡','💥'
+  ];
+
+  rainInterval = setInterval(() => {
+
+    for (let i = 0; i < 4; i++) {
+
+      const emoji = document.createElement('span');
+
+      emoji.className = 'rain-emoji';
+
+      emoji.textContent =
+        emojis[Math.floor(Math.random() * emojis.length)];
+
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.fontSize = (23 + Math.random() * 35) + 'px';
+      emoji.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+
+      document.getElementById('emojiRain').appendChild(emoji);
+
+      later(() => emoji.remove(), 6000);
+
+    }
+
+  }, 100);
+
+  // Countdown
+
+  countdownInterval = setInterval(() => {
+
+    count--;
+
+    document.getElementById('countdown').textContent = count;
+
+    if (count <= 0) {
+
+      clearInterval(countdownInterval);
+
+      showScreen(3);
+
+      // Let the full-screen message stay for 3 seconds.
+
+      later(() => {
+
+        clearInterval(rainInterval);
+
+        document.getElementById('emojiRain').innerHTML = '';
+
+        showScreen(4);
+
+      }, 3000);
+
+    }
+
+  }, 1000);
+
+}
+
+
+// SELECT A REPLY
+
+const replies = {
+
+  reply: "Hahaha, aba k bhannu paryo ta? 😂",
+
+  ditch: "Ja bhai, talai ditch gare hai! 💀😂",
+
+  no: "Ma boldina ta sanga aba! 🙄",
+
+  yes: "Huss, aba dekhi bolchu ni! ❤️😂"
+
+};
+
+function selectOption(button, value) {
+
+  selected = value;
+
+  document.querySelectorAll('.option').forEach(btn => {
+    btn.classList.remove('selected');
+  });
+
+  button.classList.add('selected');
+
+  const customArea = document.getElementById('customArea');
+
+  if (value === 'custom') {
+
+    customArea.classList.remove('hidden');
+
+    document.getElementById('customMessage').focus();
+
+  } else {
+
+    customArea.classList.add('hidden');
+
+  }
+
+}
+
+
+// SEND TO WHATSAPP
+
+function sendReply() {
+
+  if (!selected) {
+
+    alert('Oii, euta option ta choose gar na 😂');
+
+    return;
+
+  }
+
+  let message;
+
+  if (selected === 'custom') {
+
+    message = document.getElementById('customMessage')
+      .value.trim();
+
+    if (!message) {
+
+      alert('Kei ta lekha 😂');
+
+      return;
+
+    }
+
+  } else {
+
+    message = replies[selected];
+
+  }
+
+  const whatsappURL =
+    'https://wa.me/' + phone +
+    '?text=' + encodeURIComponent(message);
+
+  document.getElementById('openWhatsApp').onclick = () => {
+
+    window.location.href = whatsappURL;
+
+  };
+
+  showScreen(5);
+
+}
+
+
+// INITIALIZE
+
+createBalloons();
+
+</script>
+
+</body>
+</html>
